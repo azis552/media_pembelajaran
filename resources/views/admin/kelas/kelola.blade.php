@@ -22,6 +22,8 @@
                         <input type="text" id="nama" class="form-control" name="nama">
                         <label for="">Kategori</label>
                         <input type="text" class="form-control" name="kategori" id="kategori">
+                        <label for="">Waktu (menit)</label>
+                        <input type="number" class="form-control" name="waktu" id="waktu">
                         <label for="">Keterangan</label>
                         <input type="text" name="keterangan" id="keterangan" class="form-control">
                         <label for="">Gambar</label>
@@ -53,6 +55,8 @@
                         <textarea name="keterangan" id="keterangan" class="form-control" cols="30" rows="10"></textarea>
                         <label for="">Kategori</label>
                         <input type="text" class="form-control" name="kategori" id="kategori">
+                        <label for="">Waktu (menit)</label>
+                        <input type="number" class="form-control" name="waktu" id="waktu">
                         <label for="">Gambar</label>
                         <input type="file" class="form-control" id="gambar" name="gambar">
                         <input type="hidden" name="id_kelas" id="id_kelas" value="{{$kelas->id}}">
@@ -103,18 +107,19 @@
                         style="border: 1px solid #ccc; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);  background-image: linear-gradient(to right, #4d36cd, #FFFFFF);">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-2">
+                                <div class="col">
                                     <img src="{{ asset('storage/images_kuis/' . $i->gambar) }}" width="100" height="150" alt="">
                                 </div>
                                 <div class="col" style="color: #fff">
                                     <h5 style="color: #FFFFFF">{{ $i->nama }}</h5>
-                                    <p><b>{{ $i->keterangan }}</b> | Kategori : {{ $i->kategori }} </p>
+                                    <p><b>{{ $i->keterangan }}</b> | Kategori : {{ $i->kategori }} | Waktu : {{ $i->waktu }} </p>
                                 </div>
                                 <div class="col text-end">
                                     @if ($hak_akses == 'teacher')
                                     <button type="button" class="btn btn-warning btnUpdateKuis" data-bs-toggle="modal"
                                     data-bs-target="#modalUbah" data-id="{{ $i->id }}"
                                     data-nama="{{ $i->nama }}"
+                                    data-waktu="{{ $i->waktu }}"
                                     data-gambar="{{ asset('storage/images_kuis/' . $i->gambar) }}" 
                                     data-keterangan="{{ $i->keterangan }}"
                                     data-kategori="{{ $i->kategori }}">
@@ -126,6 +131,7 @@
                                 <a href="{{ route('play.kuis',$i->id) }}" class="btn btn-success">
                                     Play
                                 </a>
+                                <a href="{{ route('history.kuis.siswa', $i->id) }}" class="btn btn-success" >History Siswa</a>
                                 <button class="btn btn-danger btnDelete" data-id="{{ $i->id }}" data-id_kelas="{{ $kelas->id }}">
                                     Hapus
                                 </button>

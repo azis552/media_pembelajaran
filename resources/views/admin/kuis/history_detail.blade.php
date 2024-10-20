@@ -52,25 +52,27 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Kuis</th>
-                            <th>Score</th>
-                            <th>Tanggal</th>
-                            <th>Aksi</th>
+                            <th>Soal</th>
+                            <th>Jawaban Benar</th>
+                            <th>Jawaban Peserta</th>
+                            <th>Kesimpulan</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($data as $item)
-                            @foreach ($item as $i)
+                           
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $i['nama_kuis'] }}</td>
-                                <td>{{ $i['nilai'] }}</td>
-                                <td>{{ $i['tgl'] }}</td>
+                                <td>{{ $item->soal }}</td>
+                                <td>{{ $item->jawaban_benar }}</td>
                                 <td>
-                                    <a href="{{ route('kuis.history.detail', [$i['id_kuis'], $i['tgl']]) }}" class="btn btn-primary" >Detail Jawaban</a>
+                                    {{ $item->jawaban }}
+                                </td>
+                                <td>
+                                    {{ $item->jawaban_benar == $item->jawaban ? 'Benar' : 'Salah' }}
                                 </td>
                             </tr>
-                            @endforeach
+                            
                         @endforeach
                        
                     </tbody>

@@ -52,6 +52,7 @@
                     <thead>
                         <tr>
                             <th>No</th>
+                            <th>Nama</th>
                             <th>Kuis</th>
                             <th>Score</th>
                             <th>Tanggal</th>
@@ -63,6 +64,7 @@
                             @foreach ($item as $i)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
+                                <td>{{ $i['user'] }}</td>
                                 <td>{{ $i['nama_kuis'] }}</td>
                                 <td>{{ $i['nilai'] }}</td>
                                 <td>{{ $i['tgl'] }}</td>

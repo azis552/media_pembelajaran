@@ -1,4 +1,5 @@
-<footer class="footer fixed-bottom ">
+
+<footer class="footer  ">
     <div class="container-fluid ">
         <div class="row align-items-center justify-content-lg-between">
             <div class="col-lg-6 mb-lg-0 mb-4 text-end">
@@ -11,7 +12,7 @@
                             document.write(new Date().getFullYear())
                         </script>,
                         made with <i class="fa fa-heart"></i> by
-                        <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative Tim</a>
+                        <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Irdina</a>
                         for a better web.
                     </div>
                 </ul>
@@ -28,8 +29,8 @@
     <div class="card shadow-lg">
         <div class="card-header pb-0 pt-3 ">
             <div class="float-start">
-                <h5 class="mt-3 mb-0">Argon Configurator</h5>
-                <p>See our dashboard options.</p>
+                <h5 class="mt-3 mb-0">Irdina</h5>
+                <p></p>
             </div>
             <div class="float-end mt-4">
                 <button class="btn btn-link text-dark p-0 fixed-plugin-close-button">
@@ -455,6 +456,7 @@
         $('.btnUpdateKuis').on('click', function() {
             var id = $(this).data('id');
             var nama = $(this).data('nama');
+            var waktu = $(this).data('waktu');
             var keterangan = $(this).data('keterangan');
             var kategori = $(this).data('kategori');
             $("#modalUbah #id").val(id);
@@ -462,6 +464,7 @@
             // Periksa apakah idFoto tidak kosong
             // Tampilkan foto di div dengan id "fotoContainer"
             $("#nama").val(nama);
+            $("#waktu").val(waktu);
             $("#keterangan").val(keterangan);
             $("#kategori").val(kategori);
             $('#fotoKuis').html('<img src="' + idFoto + '" alt="Foto" width="100" height="150">');

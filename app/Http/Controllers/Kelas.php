@@ -123,7 +123,8 @@ class Kelas extends Controller
             'keterangan' => 'required',
             'kategori' => 'required',
             'gambar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'id_kelas' => 'required'
+            'id_kelas' => 'required',
+            'waktu' => 'required',
         ]);
         // Simpan gambar
         if ($request->hasFile('gambar')) {
@@ -144,6 +145,7 @@ class Kelas extends Controller
             'keterangan' => 'required',
             'kategori' => 'required',
             'gambar' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'waktu' => 'required',
         ]);
         $kuis = Kuis::findOrFail($id);
         if ($request->hasFile('gambar')) {

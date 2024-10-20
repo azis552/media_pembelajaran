@@ -134,6 +134,7 @@
                                             data-nama="{{ $i->kelas }}">
                                             Update
                                         </button>
+                                        
                                         <a href="{{ route('kelas.kelola', $i->id) }}" class="btn btn-primary">
                                             Kelola
                                         </a>
