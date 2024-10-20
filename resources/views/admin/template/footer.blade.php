@@ -598,9 +598,10 @@
             // Mendapatkan token CSRF
             var csrfToken = $('meta[name="csrf-token"]').attr('content');
             // Tambahkan token CSRF ke dalam data permintaan
-            var jawabanBenar = $('#jawaban').val();
-            var jawabanBenar = jawabanBenar+'tambah';
+			
+            var jawabanBenar = $('#jawaban_tambah').val();
             var value_JawabanBenar = $('#'+jawabanBenar).val();
+			
             formData.append('jawaban_benar', value_JawabanBenar);
             formData.append('_token', csrfToken);
             formData.append('gambar', gambar); // Menambahkan file gambar ke FormData

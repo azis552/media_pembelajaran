@@ -76,6 +76,7 @@
         </div>
     </div>
     <!-- Modal Tambah -->
+    <!-- Modal Tambah -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
         data-bs-backdrop="static">
         <div class="modal-dialog modal-lg">
@@ -121,7 +122,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="jawaban_benar">Jawaban Benar:</label>
-                                    <select class="form-control jawaban_benar" id="jawaban">
+                                    <select class="form-control jawaban_benar" id="jawaban_tambah">
                                         <option value="jawaban1tambah">A</option>
                                         <option value="jawaban2tambah">B</option>
                                         <option value="jawaban3tambah">C</option>

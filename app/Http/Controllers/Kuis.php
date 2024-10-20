@@ -197,14 +197,63 @@ class Kuis extends Controller
                 $simpan = Jawaban::create($data);
             }
         }
+        
+
         $id_user = Auth::user()->id;
-        $data1 = DB::table('plays')
-            ->join('kuis', 'id_kuis', '=', 'kuis.id')
-            ->join('users', 'id_user', '=', 'users.id')
-            ->select('kuis.nama as kuis', 'users.name', 'score')
-            ->where('plays.id_user', '=', $id_user)
+
+        // Mengambil semua jawaban pengguna berdasarkan ID kuis
+        $jawabanPengguna = Jawaban::join('soals', 'soals.id', '=', 'jawabans.id_soal')
+            ->where('jawabans.id_user', '=', $id_user)
+            ->select('soals.id_kuis', 'jawabans.jawaban', 'soals.jawaban_benar', 'jawabans.created_at')
             ->get();
-        return view('admin.kuis.history', ['data' => $data1]);
+
+        // Menghitung skor untuk setiap kuis berdasarkan waktu
+        $scores = []; // Array untuk menyimpan skor untuk setiap kuis
+        $sessionScores = []; // Array untuk menyimpan skor per sesi
+        $totalSoal = []; // Array untuk menyimpan total soal per ID kuis
+
+        foreach ($jawabanPengguna as $jawaban) {
+            $id_kuis = $jawaban->id_kuis;
+            $sessionKey = $id_kuis . '|' . $jawaban->created_at; // Buat key unik berdasarkan ID kuis dan waktu
+
+            // Inisialisasi skor untuk sesi ini jika belum ada
+            if (!isset($sessionScores[$sessionKey])) {
+                $sessionScores[$sessionKey] = 0;
+            }
+
+            // Bandingkan jawaban pengguna dengan jawaban yang benar
+            if ($jawaban->jawaban === $jawaban->jawaban_benar) {
+                $sessionScores[$sessionKey]++; // Tambahkan skor jika jawaban benar
+            }
+
+            // Hitung total soal per ID kuis
+            if (!isset($totalSoal[$id_kuis])) {
+                $totalSoal[$id_kuis] = Soal::where('id_kuis', $id_kuis)->count(); // Hitung total soal
+            }
+        }
+
+        // Mengelompokkan skor berdasarkan ID kuis
+        foreach ($sessionScores as $sessionKey => $score) {
+            list($id_kuis, $createdAt) = explode('|', $sessionKey);
+
+            // Hitung nilai berdasarkan jumlah soal
+            $nilai = ($score / $totalSoal[$id_kuis]) * 100; // Menghitung nilai akhir
+
+            // Simpan skor ke dalam array dengan ID kuis dan waktu sebagai kunci
+            if (!isset($scores[$id_kuis])) {
+                $scores[$id_kuis] = []; // Inisialisasi jika belum ada
+            }
+
+            $scores[$id_kuis][] = [
+                'nama_kuis' => ModelsKuis::find($id_kuis)->nama,
+                'id_kuis' => $id_kuis,
+                'nilai' => number_format($nilai, 2), // Format angka untuk tampilan
+                'tgl' => $createdAt
+            ];
+        }
+
+        $data = array_values($scores);
+        return view('admin.kuis.history', ['data' => $data]);
     }
 
     public function history_detail($id, $id2)
