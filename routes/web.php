@@ -25,6 +25,9 @@ Route::get('auth/login',[Auth::class,'login'])->name('login');
 Route::get('auth/register',[Auth::class,'signUp'])->name('login.signup');
 Route::post('auth/register',[Auth::class,'register'])->name('login.register');
 Route::post('auth/login_check',[Auth::class,'login_check'])->name('login_check');
+
+Route::middleware(['auth'])->group(function () {
+
 Route::get('dashboard',[Dashboard::class,'index'])->name('dashboard');
 Route::get('logout',[Auth::class,'logout'])->name('logout');
 Route::resource('kelas',Kelas::class);
@@ -56,3 +59,5 @@ Route::put('profile/update/{id}',[Auth::class,'update'])->name('update.profile')
 Route::get('profile/{id}/user',[Auth::class,'profile'])->name('profile');
 
 
+    
+});
