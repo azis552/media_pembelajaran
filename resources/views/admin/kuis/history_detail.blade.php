@@ -55,6 +55,7 @@
                             <th>Soal</th>
                             <th>Jawaban Benar</th>
                             <th>Jawaban Peserta</th>
+                            <th>Status</th>
                             <th>Kesimpulan</th>
                         </tr>
                     </thead>
@@ -67,6 +68,9 @@
                                 <td>{{ $item->jawaban_benar }}</td>
                                 <td>
                                     {{ $item->jawaban }}
+                                </td>
+                                <td>
+                                    {{ $item->status }}
                                 </td>
                                 <td>
                                     {{ $item->jawaban_benar == $item->jawaban ? 'Benar' : 'Salah' }}
