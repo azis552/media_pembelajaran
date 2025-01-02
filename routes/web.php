@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth;
 use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Kelas;
 use App\Http\Controllers\Kuis;
+use App\Http\Controllers\Modul;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -58,6 +59,8 @@ Route::get('kuis/history/{id}/tgl/{id2}',[Kuis::class,'history_detail'])->name('
 Route::put('profile/update/{id}',[Auth::class,'update'])->name('update.profile');
 Route::get('profile/{id}/user',[Auth::class,'profile'])->name('profile');
 
+// Modul
 
+Route::resource('modul',Modul::class);
     
 });

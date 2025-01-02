@@ -737,4 +737,10 @@
     $(document).ready(function(){
         $('#tableSoal').DataTable();
     });
+    $(document).ready( function () {
+  var table = $('#example').DataTable( {
+    pageLength : 5,
+    lengthMenu: [[5, 10, 20, -1], [5, 10, 20, 'Semua']]
+  } )
+} );
 </script>
