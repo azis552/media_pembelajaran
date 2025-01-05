@@ -99,6 +99,7 @@ class Kuis extends Controller
         $jawabanPengguna = Jawaban::join('soals', 'soals.id', '=', 'jawabans.id_soal')
             ->select('soals.id_kuis', 'jawabans.jawaban', 'soals.jawaban_benar', 'jawabans.created_at', 'jawabans.id_user')
             ->get();
+        dd($jawabanPengguna);
 
         // Inisialisasi variabel untuk menyimpan skor, sesi, total soal, dan pengguna
         $scores = [];
