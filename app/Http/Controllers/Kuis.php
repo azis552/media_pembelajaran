@@ -100,7 +100,9 @@ class Kuis extends Controller
             ->where('soals.id_kuis', '=', $id)
             ->select('soals.id_kuis', 'jawabans.jawaban', 'soals.jawaban_benar', 'jawabans.created_at', 'jawabans.id_user')
             ->get();
-        dd($jawabanPengguna);
+        if(empty($jawabanPengguna)){
+            return back();
+        }
 
         // Inisialisasi variabel untuk menyimpan skor, sesi, total soal, dan pengguna
         $scores = [];
