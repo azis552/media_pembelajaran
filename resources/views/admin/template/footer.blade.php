@@ -211,9 +211,10 @@
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
 <script src="{{ asset('') }}assets/js/argon-dashboard.min.js?v=2.0.4"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
- <!-- DataTables JS -->
- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+<!-- DataTables JS -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.5.4/js/dataTables.responsive.min.js"></script>
 </body>
 
 </html>
@@ -731,12 +732,72 @@
                 }
             });
         });
+
+        $('.btnDeleteSoal').click(function(e) {
+            e.preventDefault();
+
+            var id = $(this).data('id');
+            var id_kuis = $(this).data('id_kuis')
+
+            Swal.fire({
+                title: 'Konfirmasi',
+                text: "Apakah kamu yakin ingin menghapus data ini?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Hapus!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Ambil CSRF token
+                    var token = "{{ csrf_token() }}";
+
+                    // Set header CSRF token dalam permintaan Ajax
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': token
+                        }
+                    });
+                    $.ajax({
+                        url: "{{ route('soal.delete', ':id') }}".replace(':id', id),
+                        method: 'DELETE',
+                        success: function(response) {
+                            if (response.message == 'Data berhasil dihapus') {
+                                // Data berhasil dihapus
+                                // Tampilkan pesan sukses
+                                Swal.fire(
+                                    'Terhapus!',
+                                    'Data telah dihapus.',
+                                    'success'
+                                ).then(() => {
+                                    // Pindah ke halaman lain setelah menutup pesan SweetAlert
+                                    window.location.href =
+                                        "{{ route('kuis.soal', ':id') }}"
+                                        .replace(':id',
+                                            id_kuis);
+                                });
+                                // Tambahkan kode untuk menghapus elemen dari DOM jika diperlukan
+                            } else {
+                                // Gagal menghapus data
+                                Swal.fire(
+                                    'Gagal!',
+                                    'Gagal menghapus data.',
+                                    'error'
+                                );
+                            }
+                        }
+                    });
+                }
+            });
+        });
     });
 </script>
 <script>
-    $(document).ready(function(){
-        $('#tableSoal').DataTable();
+    $(document).ready(function () {
+    $('#tableSoal').DataTable({
+        responsive: true
     });
+});
     $(document).ready( function () {
   var table = $('#example').DataTable( {
     pageLength : 5,

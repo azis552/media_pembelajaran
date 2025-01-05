@@ -31,7 +31,7 @@ class Modul extends Controller
         $validate = $request->validate([
             'id_kelas' => 'required',
             'id_kuis' => 'required',
-            'document' => 'required|mimes:png,jpg,pdf,doc,docx|max:5048',
+            'document' => 'required|mimes:png,jpg,pdf,doc,docx|max:50000',
         ]);
 
         if ($request->hasFile('document')) {

@@ -42,6 +42,7 @@ Route::Delete('kelas/kelola/delete/{id}',[Kelas::class,'delete_kuis'])->name('ku
 Route::get('kelas/kelola/{id}/kuis_soal',[Kelas::class,'kuis_soal'])->name('kuis.soal');
 Route::post('kelas/kuis/soal',[Kelas::class,'tambah_soal'])->name('soal.kuis');
 Route::put('kelas/kuis/soal/{id}',[Kelas::class,'update_soal'])->name('soal.update');
+Route::delete('kelas/kuis/soal/{id}',[Kelas::class,'delete_soal'])->name('soal.delete');
 
 // join kelas
 Route::post('kelas/join',[Kelas::class,'join_kelas'])->name('kelas.join');

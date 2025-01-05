@@ -215,7 +215,7 @@
                                         >
                                         Update
                                     </button>
-                                    <button class="btn btn-danger btnDelete" data-id="{{ $i->id }}"
+                                    <button class="btn btn-danger btnDeleteSoal" data-id="{{ $i->id }}"
                                         data-id_kuis="{{ $kuis->id }}">
                                         Hapus
                                     </button>

@@ -245,4 +245,13 @@ class Kelas extends Controller
 
         return response()->json(['success' => true]);
     }
+    public function delete_soal($id)
+    {
+        $data_soal = Soal::findOrFail($id);
+            if ($data_soal->delete() ) {
+                return response()->json(['message' => 'Data berhasil dihapus'], 200);
+            } else {
+                return response()->json(['message' => 'Data Gagal Dihapus'], 500);
+            }
+    }
 }

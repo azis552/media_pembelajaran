@@ -34,10 +34,12 @@
     <!-- CSS Files -->
     <link id="pagestyle" href="{{ asset('') }}assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-  <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.4/css/responsive.dataTables.min.css">
+  {{-- <!-- DataTables CSS -->
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
 <!-- DataTables Responsive CSS -->
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css"> --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
