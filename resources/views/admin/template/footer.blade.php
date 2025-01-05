@@ -1,4 +1,3 @@
-
 <footer class="footer  ">
     <div class="container-fluid ">
         <div class="row align-items-center justify-content-lg-between">
@@ -589,7 +588,7 @@
             e.preventDefault();
             var formData = new FormData($(this)[
                 0]); // Mengambil semua data formulir menggunakan serialize
-            
+
             var gambarInput = $('#gambar')[0]; // Menggunakan [0] untuk mengakses objek DOM
             var gambarFiles = gambarInput.files;
             if (gambarFiles.length > 0) {
@@ -599,10 +598,10 @@
             // Mendapatkan token CSRF
             var csrfToken = $('meta[name="csrf-token"]').attr('content');
             // Tambahkan token CSRF ke dalam data permintaan
-			
+
             var jawabanBenar = $('#jawaban_tambah').val();
-            var value_JawabanBenar = $('#'+jawabanBenar).val();
-			
+            var value_JawabanBenar = $('#' + jawabanBenar).val();
+
             formData.append('jawaban_benar', value_JawabanBenar);
             formData.append('_token', csrfToken);
             formData.append('gambar', gambar); // Menambahkan file gambar ke FormData
@@ -661,15 +660,15 @@
             $("#jawaban4").val(jawaban4);
             $("#jawaban5").val(jawaban5);
             var jawaban_benar_terpilih;
-            if(jawaban_benar == jawaban1) {
+            if (jawaban_benar == jawaban1) {
                 jawaban_benar_terpilih = 'jawaban1';
-            } else if(jawaban_benar == jawaban2) {
+            } else if (jawaban_benar == jawaban2) {
                 jawaban_benar_terpilih = 'jawaban2';
-            } else if(jawaban_benar == jawaban3) {
+            } else if (jawaban_benar == jawaban3) {
                 jawaban_benar_terpilih = 'jawaban3';
-            } else if(jawaban_benar == jawaban4) {
+            } else if (jawaban_benar == jawaban4) {
                 jawaban_benar_terpilih = 'jawaban4';
-            } else if(jawaban_benar == jawaban5) {
+            } else if (jawaban_benar == jawaban5) {
                 jawaban_benar_terpilih = 'jawaban5';
             }
 
@@ -692,7 +691,7 @@
             // Membuat token CSRF di sisi klien
             var csrfToken = $('meta[name="csrf-token"]').attr('content');
             var jawabanBenar = $('#jawaban').val();
-            var value_JawabanBenar = $('#'+jawabanBenar).val();
+            var value_JawabanBenar = $('#' + jawabanBenar).val();
             formData.append('jawaban_benar', value_JawabanBenar);
             // Tambahkan token CSRF ke dalam data permintaan
             formData.append('_token', csrfToken);
@@ -793,15 +792,19 @@
     });
 </script>
 <script>
-    $(document).ready(function () {
-    $('#tableSoal').DataTable({
-        responsive: true
+    $(document).ready(function() {
+        $('#tableSoal').DataTable({
+            responsive: true,
+            scrollX: true
+        });
     });
-});
-    $(document).ready( function () {
-  var table = $('#example').DataTable( {
-    pageLength : 5,
-    lengthMenu: [[5, 10, 20, -1], [5, 10, 20, 'Semua']]
-  } )
-} );
+    $(document).ready(function() {
+        var table = $('#example').DataTable({
+            pageLength: 5,
+            lengthMenu: [
+                [5, 10, 20, -1],
+                [5, 10, 20, 'Semua']
+            ]
+        })
+    });
 </script>
