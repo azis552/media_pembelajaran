@@ -177,7 +177,7 @@
                         </div>
                     </div>
                 @endif
-                <table id="tableSoal" class="table table-striped">
+                <table id="tableSoal "class="display nowrap" style="width:100%">
                     <thead>
                         <tr>
                             <th>No</th>
