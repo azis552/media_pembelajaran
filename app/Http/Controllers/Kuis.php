@@ -100,7 +100,7 @@ class Kuis extends Controller
             ->where('soals.id_kuis', '=', $id)
             ->select('soals.id_kuis', 'jawabans.jawaban', 'soals.jawaban_benar', 'jawabans.created_at', 'jawabans.id_user')
             ->get();
-        if(empty($jawabanPengguna)){
+        if (empty($jawabanPengguna)) {
             return back();
         }
 
@@ -153,24 +153,30 @@ class Kuis extends Controller
                 $scores[$id_kuis] = []; // Inisialisasi jika belum ada
             }
 
-            // Ambil nama pengguna yang sesuai dengan ID pengguna dari jawaban
+            // Ambil id_user dan nama pengguna yang sesuai dengan ID kuis dan sesi
             $userNames = [];
+            $userIds = []; // Array untuk menyimpan ID pengguna
             foreach ($jawabanPengguna as $jawabanItem) {
                 if ($jawabanItem->id_kuis == $id_kuis && $jawabanItem->created_at == $createdAt) {
+                    $userIds[] = $jawabanItem->id_user; // Simpan ID pengguna
                     $userNames[] = $users[$jawabanItem->id_user]; // Ambil nama pengguna
                 }
             }
 
-            // Gabungkan nama pengguna yang unik
+            // Gabungkan ID dan nama pengguna yang unik
+            $userIdsUnique = array_unique($userIds);
+            $userIdsString = implode(', ', $userIdsUnique);
             $userNamesUnique = array_unique($userNames);
             $userNamesString = implode(', ', $userNamesUnique);
 
+            // Tambahkan data ke $scores
             $scores[$id_kuis][] = [
                 'nama_kuis' => ModelsKuis::find($id_kuis)->nama,
                 'id_kuis' => $id_kuis,
                 'nilai' => number_format($nilai, 2), // Format angka untuk tampilan
                 'tgl' => $createdAt,
-                'user' => $userNamesString // Gabungkan nama pengguna
+                'user' => $userNamesString, // Gabungkan nama pengguna
+                'id_user' => $userIdsString // Gabungkan ID pengguna
             ];
         }
 
@@ -202,7 +208,7 @@ class Kuis extends Controller
                 $simpan = Jawaban::create($data);
             }
         }
-        
+
 
         $id_user = Auth::user()->id;
 
@@ -261,9 +267,9 @@ class Kuis extends Controller
         return view('admin.kuis.history', ['data' => $data]);
     }
 
-    public function history_detail($id, $id2)
+    public function history_detail($id, $id2, $id3)
     {
-        $data = Jawaban::join('soals', 'id_soal', '=', 'soals.id')->where('id_user', '=', Auth::user()->id)
+        $data = Jawaban::join('soals', 'id_soal', '=', 'soals.id')->where('id_user', '=', $id3)
             ->where('soals.id_kuis', '=', $id)
             ->where('jawabans.created_at', '=', $id2)
             ->get();

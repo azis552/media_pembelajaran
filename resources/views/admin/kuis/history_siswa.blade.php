@@ -60,6 +60,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                        
                         @foreach ($data as $item)
                             @foreach ($item as $i)
                             <tr>
@@ -69,7 +70,7 @@
                                 <td>{{ $i['nilai'] }}</td>
                                 <td>{{ $i['tgl'] }}</td>
                                 <td>
-                                    <a href="{{ route('kuis.history.detail', [$i['id_kuis'], $i['tgl']]) }}" class="btn btn-primary" >Detail Jawaban</a>
+                                    <a href="{{ route('kuis.history.detail', [$i['id_kuis'], $i['tgl'], $i['id_user']]) }}" class="btn btn-primary" >Detail Jawaban</a>
                                 </td>
                             </tr>
                             @endforeach
