@@ -259,7 +259,8 @@ class Kuis extends Controller
                 'nama_kuis' => ModelsKuis::find($id_kuis)->nama,
                 'id_kuis' => $id_kuis,
                 'nilai' => number_format($nilai, 2), // Format angka untuk tampilan
-                'tgl' => $createdAt
+                'tgl' => $createdAt,
+                'id_user' => $id_user
             ];
         }
 
