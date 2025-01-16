@@ -13,7 +13,7 @@
             localStorage.removeItem('activeQuestion'); // Hapus soal terakhir yang dibuka
 
             // Hapus semua jawaban yang dipilih
-            const questionCount = 10; // Ganti dengan jumlah soal yang Anda miliki
+            const questionCount = 100; // Ganti dengan jumlah soal yang Anda miliki
             for (let i = 0; i < questionCount; i++) {
                 localStorage.removeItem(`jawaban_${i}`); // Hapus jawaban dari localStorage
                 localStorage.removeItem(`kesulitan_${i}`); // Hapus tingkat kesulitan
