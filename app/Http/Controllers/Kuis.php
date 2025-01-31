@@ -284,7 +284,8 @@ class Kuis extends Controller
             ->get();
 
         foreach ($data as $d) {
-            Jawaban::destroy($d->id);
+            $delete = Jawaban::where('id', '=', $d->id)->delete();
+            dd($delete);
         }
         return redirect()->back();
     }
