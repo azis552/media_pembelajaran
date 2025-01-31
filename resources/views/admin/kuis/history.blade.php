@@ -68,7 +68,7 @@
                                 <td>{{ $i['tgl'] }}</td>
                                 <td>
                                     <a href="{{ route('kuis.history.detail', [$i['id_kuis'], $i['tgl'], $i['id_user']]) }}" class="btn btn-primary" >Detail Jawaban</a>
-                                    <a href="{{ route('kuis.history.detail.hapus', [$i['id_kuis'], $i['tgl'], $i['id_user']]) }}" class="btn btn-primary" >Hapus</a>
+                                    {{-- <a href="{{ route('kuis.history.detail.hapus', [$i['id_kuis'], $i['tgl'], $i['id_user']]) }}" class="btn btn-primary" >Hapus</a> --}}
                                 </td>
                             </tr>
                             @endforeach
