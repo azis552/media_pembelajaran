@@ -282,7 +282,10 @@ class Kuis extends Controller
             ->where('soals.id_kuis', '=', $id)
             ->where('jawabans.created_at', '=', $id2)
             ->get();
-        $data->delete();
+
+        foreach ($data as $d) {
+            Jawaban::destroy($d->id);
+        }
         return redirect()->back();
     }
 }
