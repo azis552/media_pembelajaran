@@ -276,4 +276,13 @@ class Kuis extends Controller
             ->get();
         return view('admin.kuis.history_detail', ['data' => $data]);
     }
+    public function history_detail_hapus($id, $id2, $id3)
+    {
+        $data = Jawaban::join('soals', 'id_soal', '=', 'soals.id')->where('id_user', '=', $id3)
+            ->where('soals.id_kuis', '=', $id)
+            ->where('jawabans.created_at', '=', $id2)
+            ->get();
+        $data->delete();
+        return redirect()->back();
+    }
 }

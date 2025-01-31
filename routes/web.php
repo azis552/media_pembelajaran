@@ -55,6 +55,7 @@ Route::post('kuis/play',[Kuis::class,'simpan_score'])->name('play.simpan');
 Route::get('kuis/history',[Kuis::class,'history'])->name('kuis.history');
 Route::post('kuis/store',[Kuis::class,'store'])->name('kuis.store');
 Route::get('kuis/history/{id}/tgl/{id2}/id/{id3}',[Kuis::class,'history_detail'])->name('kuis.history.detail');
+Route::get('kuis/history/hapus/{id}/tgl/{id2}/id/{id3}',[Kuis::class,'history_detail_hapus'])->name('kuis.history.detail.hapus');
 
 // profile
 Route::put('profile/update/{id}',[Auth::class,'update'])->name('update.profile');
