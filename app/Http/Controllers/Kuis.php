@@ -281,12 +281,12 @@ class Kuis extends Controller
         $data = Jawaban::join('soals', 'id_soal', '=', 'soals.id')->where('id_user', '=', $id3)
             ->where('soals.id_kuis', '=', $id)
             ->where('jawabans.created_at', '=', $id2)
-            ->get();
+            ->delete();
 
-        foreach ($data as $d) {
-            $delete = Jawaban::where('id', '=', $d->id)->delete();
-            dd($delete);
-        }
+        // foreach ($data as $d) {
+        //     $delete = Jawaban::where('id', '=', $d->id)->delete();
+        //     dd($delete);
+        // }
         return redirect()->back();
     }
 }
